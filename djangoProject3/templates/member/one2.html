@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .c1 {
+            background: lightcoral;
+            width: 150px;
+            height: 30px;
+        }
+
+        button {
+            background: limegreen;
+        }
+    </style>
+</head>
+<body>
+<h3>회원정보 검색 결과 {{ test }}</h3>
+<table border="1">
+    <tr>
+        <td width="100" class="c1">아이디</td>
+        <td width="200">
+            {{ one.id }}
+        </td>
+    </tr>
+    <tr>
+        <td width="100" class="c1">이름</td>
+        <td width="200">
+            {{ one.name }}
+        </td>
+    </tr>
+    <tr>
+        <td width="100" class="c1">전화번호</td>
+        <td width="200">
+            {{ one.tel }}
+        </td>
+    </tr>
+    <tr>
+        <td width="100" class="c1">주소</td>
+        <td width="200">
+            {{ one.addr }}
+        </td>
+    </tr>
+    <tr>
+        <td class="c1">회원정보페이지로</td>
+        <td width="200">
+            <a href="/member">
+                <button>회원정보페이지로</button>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td class="c1">회원수정페이지로</td>
+        <td width="200">
+            <a href="/member/up/{{ one.id }}">
+                <button>회원수정페이지로</button>
+            </a>
+        </td>
+    </tr>
+
+</table>
+</body>
+</html>
