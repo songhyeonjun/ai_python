@@ -21,7 +21,7 @@ urlpatterns = [
     path('member/login', member.views.login),
     path('member/login2', member.views.login2),
 
-    path('question/', question.views.start)
-    path('question/insert', question.views.start)
-    path('question/', question.views.start)
+    path('question/', question.views.start),
+    path('question/insert', question.views.start),
+    path('question/', question.views.start),
 ]

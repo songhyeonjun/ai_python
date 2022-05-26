@@ -19,8 +19,11 @@
             background: limegreen;
         }
     </style>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body>
+<img src="/static/img/goosee.png" width="200" height="200">
 <h3>로그인 id: {{ request.session.logid }}</h3>
 <h3>회원가입 작성</h3>
 <table border="1">
