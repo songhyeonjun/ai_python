@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <title>회원 통계</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+    //연령별 막대그래프
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawAge);
+
+        function drawAge() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', '연령대');
+        data.addColumn('number', '회원수(명)');
+
+        data.addRows([
+
+        ['10대 이하', ${list.get(2).memberstatistics_count},],
+        ['20대', ${list.get(3).memberstatistics_count}],
+        ['30대', ${list.get(4).memberstatistics_count}],
+        ['40대', ${list.get(5).memberstatistics_count}],
+        ['50대', ${list.get(6).memberstatistics_count}],
+        ['60대 이상', ${list.get(7).memberstatistics_count}]
+
+        ]);
+
+        var options = {
+        title: '연령대별 회원 수',
+        hAxis: {
+        title: '연령대',
+        viewWindow: {
+        min: [7, 30, 0],
+        max: [17, 30, 0]
+        }
+        },
+
+        vAxis: {
+        title: '회원수(명)'
+        }
+        };
+
+        var chart = new google.visualization.ColumnChart(
+
+        document.getElementById('ageChart'));
+
+        chart.draw(data, options);
+
+        }
+        </script>
+</head>
+<body>
+    <tr class="active-row">
+        	<td>
+        	<div id="ageChart" style="width: 550px; height: 300px;"></div>
+        	</td>
+        	<td>
+        	<div id="genderChart" style="padding-left: 45px;"></div>
+        	</td>
+    </tr>
+
+</body>
+</html>
