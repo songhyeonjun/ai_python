@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+import visual.views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('legacy/', include('legacy.urls')),
-    path('visual/', include('visual.urls'))
+    path('', visual.views.index),
 ]

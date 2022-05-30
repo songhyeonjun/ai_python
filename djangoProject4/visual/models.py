@@ -9,6 +9,9 @@ class Visual(models.Model) :
     place_view = models.IntegerField(db_column='place_view')
     place_like = models.IntegerField(db_column='place_like')
 
-    class Meta:
-        managed = True
-        db_table = 'place1'
+    def __str__(self):
+        return str(self.id) + ", " + \
+                self.place_info + ", " + \
+                self.place_area + ", " + \
+                str(self.place_view) + ", " + \
+                str(self.place_like)

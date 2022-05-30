@@ -2,67 +2,121 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <title>회원 통계</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <title>통계</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawChart2);
+        google.charts.setOnLoadCallback(drawChart3);
+        google.charts.setOnLoadCallback(drawChart4);
 
-    <script>
-    //연령별 막대그래프
-        google.charts.load('current', {packages: ['corechart', 'bar']});
-        google.charts.setOnLoadCallback(drawAge);
 
-        function drawAge() {
+        function drawChart() {
 
+        // Create the data table.
         var data = new google.visualization.DataTable();
-        data.addColumn('string', '연령대');
-        data.addColumn('number', '회원수(명)');
-
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', '인원');
         data.addRows([
-
-        ['10대 이하', ${list.get(2).memberstatistics_count},],
-        ['20대', ${list.get(3).memberstatistics_count}],
-        ['30대', ${list.get(4).memberstatistics_count}],
-        ['40대', ${list.get(5).memberstatistics_count}],
-        ['50대', ${list.get(6).memberstatistics_count}],
-        ['60대 이상', ${list.get(7).memberstatistics_count}]
-
+             {% for one in all %}
+                 ['{{ one.1 }}', {{ one.3 }}],
+             {% endfor %}
         ]);
 
-        var options = {
-        title: '연령대별 회원 수',
-        hAxis: {
-        title: '연령대',
-        viewWindow: {
-        min: [7, 30, 0],
-        max: [17, 30, 0]
-        }
-        },
+        // Set chart options
+        var options = {'title':'사람들이 많이 본 여행지 TOP5',
+                       'width':800,
+                       'height':700};
 
-        vAxis: {
-        title: '회원수(명)'
-        }
-        };
-
-        var chart = new google.visualization.ColumnChart(
-
-        document.getElementById('ageChart'));
-
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
+      }
 
-        }
-        </script>
+       function drawChart2() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', '인원');
+        data.addRows([
+             {% for one in all %}
+                 ['{{ one.1 }}', {{ one.3 }}],
+             {% endfor %}
+        ]);
+
+        // Set chart options
+        var options = {'title':'사람들이 많이 본 여행지 TOP5',
+                       'width':800,
+                       'height':700};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div2'));
+        chart.draw(data, options);
+      }
+
+      function drawChart3() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', '인원');
+        data.addRows([
+             {% for one in all2 %}
+                 ['{{ one.1 }}', {{ one.4 }}],
+             {% endfor %}
+        ]);
+
+        // Set chart options
+        var options = {'title':'추천수 기준 여행지 TOP5',
+                       'width':800,
+                       'height':700};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div3'));
+        chart.draw(data, options);
+      }
+
+      function drawChart4() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', '인원');
+        data.addRows([
+             {% for one in all2 %}
+                 ['{{ one.1 }}', {{ one.4 }}],
+             {% endfor %}
+        ]);
+
+        // Set chart options
+        var options = {'title':'추천수 기준 여행지 TOP5',
+                       'width':800,
+                       'height':700};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div4'));
+        chart.draw(data, options);
+      }
+
+    </script>
+
+    </script>
+
+
+
+
 </head>
 <body>
-    <tr class="active-row">
-        	<td>
-        	<div id="ageChart" style="width: 550px; height: 300px;"></div>
-        	</td>
-        	<td>
-        	<div id="genderChart" style="padding-left: 45px;"></div>
-        	</td>
-    </tr>
+<h1>조회수 기준</h1>
+<div id="chart_div2"></div>
+<div id="chart_div"></div>
+<h1>추천수 기준</h1>
+<div id="chart_div3"></div>
+<div id="chart_div4"></div>
+
+
 
 </body>
 </html>
